@@ -28,6 +28,7 @@
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
+    "axios": "^0.16.1",
     "babel-eslint": "^7.2.3",
     "babel-preset-stage-1": "^6.1.18",
     "lodash": "^3.10.1",
@@ -36,6 +37,7 @@
     "react-redux": "4.3.0",
     "react-router": "^3.0.5",
     "redux": "^3.0.4",
-    "redux-form": "^5.3.6"
+    "redux-form": "^5.3.6",
+    "redux-thunk": "^2.2.0"
   }
 }
