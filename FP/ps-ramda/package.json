@@ -1,0 +1,24 @@
+{
+  "name": "javascript-ramda-functional",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm-run-all webpack devServer",
+    "devServer": "live-server app",
+    "webpack": "webpack -w"
+  },
+  "author": "Thiago Temple",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.0.0",
+    "ramda": "^0.21.0",
+    "ramda-fantasy": "^0.5.0"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.0",
+    "npm-run-all": "^4.0.2",
+    "webpack": "^1.15.0",
+    "webpack-dev-server": "^1.14.1"
+  }
+}

@@ -1,0 +1,114 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.flex-container:after {
+  content: "";
+  flex: auto;
+}
+
+ul {
+  padding-left: 10px;
+}
+
+li {
+  list-style-type: none;
+}
+
+/* Begin movie results */
+
+.movie {
+  max-width: 200px;
+  flex-grow: 1;
+}
+
+.movie p:first-child {
+  height: 50px;
+  vertical-align: center;
+}
+
+.movie img {
+  max-height: 260px;
+}
+
+.movie-detail {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #f8f8f8;
+  width: 300px;
+  padding-left: 15px;
+  opacity: 0;
+}
+
+/* End movie results */
+
+/* Begin form elements */
+
+button {
+  background-color: #2A9FBC;
+  color: white;
+  border: 1px solid #404040;
+  padding: 3px;
+}
+
+button[type="submit"] {
+  font-size: 20px;
+  width: 100px;
+}
+
+input[type="text"] {
+  font-size: 20px;
+  width: 300px;
+  padding: 3px;
+}
+
+form {
+  margin-top: 20px;
+}
+
+form p:first-child {
+  text-align: center;
+}
+
+/* End form elements */
+
+/* Begin users selection */
+
+section {
+  padding-top: 10px;
+}
+
+section header {
+  background-color: #F15B2A;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: white;
+  padding: 8px;
+}
+
+#favorites:empty::after {
+  content: 'You have no favorite movies';
+  color: #c0c0c0;
+}
+
+section li {
+  margin: 10 0;
+  display: flex;
+  min-width: 120;
+}
+
+section li span {
+  width: 250px;
+}
+
+section li a {
+  margin-left: 10px;
+}
+/* End users selection */
