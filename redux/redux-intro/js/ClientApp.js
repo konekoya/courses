@@ -1,19 +1,20 @@
-/* global React ReactDOM */
-import React from 'react';
-import ReactDOM from 'react-dom';
-import MyTitle from './ClientApp';
+import React from 'react'
+import { render } from 'react-dom'
+import '../public/normalize.css'
+import '../public/style.css'
 
-var MyFirstComponent = React.createClass({
-  render: function () {
+const App = React.createClass({
+  render () {
     return (
-      <div>
-        <MyTitle title='props are the best' color='peru' />
-        {/* <MyTitle title='semicolons are the worst' color='mediumaquamarine' />
-        <MyTitle title='jklol its okay if you like semicolons' color='rebeccapurple' />
-        <MyTitle title='CSS color is cool' color='royalblue' /> */}
+      <div className='app'>
+        <div className='landing'>
+          <h1>svideo</h1>
+          <input type='text' placeholder='Search' />
+          <a>or Browse All</a>
+        </div>
       </div>
     )
   }
 })
 
-ReactDOM.render(<MyFirstComponent />, document.getElementById('app'))
+render(<App />, document.getElementById('app'))
