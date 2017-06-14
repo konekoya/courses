@@ -8,6 +8,10 @@ module.exports = {
     path: path.join(__dirname, '/public'),
     filename: 'bundle.js'
   },
+  devServer: {
+    publicPath: '/public/',
+    historyApiFallback: true
+  },
   resolve: {
     extensions: ['.js', '.json']
   },
@@ -23,6 +27,10 @@ module.exports = {
         test: /\.js$/,
         loader: 'eslint-loader',
         exclude: /node_modules/
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
       },
       {
         include: path.resolve(__dirname, 'js'),
