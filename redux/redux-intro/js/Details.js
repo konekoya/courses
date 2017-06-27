@@ -1,8 +1,8 @@
-import React from 'react';
-import axios from 'axios';
-import Header from './Header';
+import React from 'react'
+import axios from 'axios'
+import Header from './Header'
 
-const { shape, string } = React.PropTypes;
+const { shape, string } = React.PropTypes
 const Details = React.createClass({
   propTypes: {
     show: shape({
