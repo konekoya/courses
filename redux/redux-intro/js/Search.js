@@ -18,16 +18,7 @@ const Search = React.createClass({
   render() {
     return (
       <div className="search">
-        <header>
-          <h1>svideo</h1>
-          <input
-            onChange={this.handleSearchTermChange}
-            value={this.props.searchTerm}
-            type="text"
-            placeholder="Search"
-          />
-          <Header showSearch />
-        </header>
+        <Header showSearch />
         <div>
           {this.props.shows
             .filter(show => {
