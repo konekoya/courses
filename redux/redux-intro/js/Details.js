@@ -1,8 +1,9 @@
 import React from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { getOMDBDetails } from './actionCreators';
 import Header from './Header';
 
-const { shape, string } = React.PropTypes;
+const { shape, string, func } = React.PropTypes;
 const Details = React.createClass({
   propTypes: {
     show: shape({
@@ -12,20 +13,16 @@ const Details = React.createClass({
       poster: string,
       trailer: string,
       imdbID: string
-    })
-  },
-  getInitialState() {
-    return {
-      omdbData: {}
-    };
+    }),
+    omdbData: shape({
+      imdbID: string
+    }),
+    dispatch: func
   },
   componentDidMount() {
-    axios
-      .get(`http://www.omdbapi.com/?i${this.props.show.imdbID}`)
-      .then(response => {
-        this.setState({ omdbData: response.data });
-      })
-      .catch(error => console.log(('axios error': error))); // eslint-disable-line no-console
+    if (!this.props.omdbData.imdbRating) {
+      this.props.dispatch(getOMDBDetails(this.props.show.imdbID));
+    }
   },
   render() {
     const { title, description, year, poster, trailer } = this.props.show;
@@ -33,8 +30,8 @@ const Details = React.createClass({
     const url = `${baseUrl}/${trailer}?rel=0&amp;control=0&amp;showinfo=0`;
 
     let rating = undefined;
-    if (this.state.omdbData.imdbRating) {
-      rating = <h3>{this.state.omdbData.imdbRating}</h3>;
+    if (this.props.omdbData.imdbRating) {
+      rating = <h3>{this.props.omdbData.imdbRating}</h3>;
     } else {
       rating = <img src="/public/img/loading.png" alt="loading indicator" />;
     }
@@ -57,4 +54,10 @@ const Details = React.createClass({
   }
 });
 
-export default Details;
+function mapStateToProps(state) {
+  return {
+    omdbData: state.omdbData.imdbRating
+  };
+}
+
+export default connect(mapStateToProps)(Details);
