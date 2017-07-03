@@ -1,22 +1,19 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React from 'react'
+import { Link } from 'react-router'
+const { string } = React.PropTypes
 
-const { shape, string } = React.PropTypes;
 const ShowCard = React.createClass({
-  propTypes : {
-    show: shape({
-      poster: string,
-      title: string,
-      year: string,
-      description: string,
-      imdbID: string
-    })
+  propTypes: {
+    poster: string.isRequired,
+    title: string.isRequired,
+    year: string.isRequired,
+    description: string.isRequired,
+    imdbID: string.isRequired
   },
-  render() {
-    const { title, year, description, poster, imdbID } = this.props;
-
+  render () {
+    const { poster, title, year, description, imdbID } = this.props
     return (
-      <Link to={ `/details/${imdbID}` }>
+      <Link to={`/details/${imdbID}`}>
         <div className='show-card'>
           <img src={`/public/img/posters/${poster}`} />
           <div>
@@ -25,7 +22,7 @@ const ShowCard = React.createClass({
             <p>{description}</p>
           </div>
         </div>
-    </Link>
+      </Link>
     )
   }
 })

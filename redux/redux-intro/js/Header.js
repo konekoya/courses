@@ -1,53 +1,54 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router';
-import { setSearchTerm } from './actionCreators.js';
+import React from 'react'
+import { connect } from 'react-redux'
+import { setSearchTerm } from './actionCreators'
+import { Link } from 'react-router'
 
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
 
-    this.handleSearchTermChange = this.handleSearchTermChange.bind(this);
+    this.handleSearchTermChange = this.handleSearchTermChange.bind(this)
   }
-  handleSearchTermChange(event) {
-    this.props.dispatch(setSearchTerm(event.target.value));
+  handleSearchTermChange (event) {
+    this.props.dispatch(setSearchTerm(event.target.value))
   }
-  render() {
-    let utilSpace;
+  render () {
+    let utilSpace
     if (this.props.showSearch) {
-      utilSpace = (
-        <input
-          onChange={this.handleSearchTermChange}
-          value={this.props.searchTerm}
-          type="text"
-          placeholder="Search"
-        />
-      );
+      utilSpace = <input onChange={this.handleSearchTermChange} value={this.props.searchTerm} type='text' placeholder='Search' />
     } else {
-      utilSpace = <h2><Link to="/search">Back</Link></h2>;
+      utilSpace = (
+        <h2>
+          <Link to='/search'>
+            Back
+          </Link>
+        </h2>
+      )
     }
     return (
       <header>
         <h1>
-          <Link to="/">svideo</Link>
+          <Link to='/'>
+            svideo
+          </Link>
         </h1>
         {utilSpace}
       </header>
-    );
+    )
   }
 }
 
-const { func, bool, string } = React.PropTypes;
-
+const { func, bool, string } = React.PropTypes
 Header.propTypes = {
+  dispatch: func,
   showSearch: bool,
-  searchTerm: string,
-  dispatch: func
-};
+  searchTerm: string
+}
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return {
     searchTerm: state.searchTerm
-  };
+  }
 }
-export default connect(mapStateToProps)(Header);
+
+export default connect(mapStateToProps)(Header)

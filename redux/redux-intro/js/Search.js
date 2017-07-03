@@ -2,14 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ShowCard from './ShowCard';
 import Header from './Header';
-
 const { arrayOf, shape, string } = React.PropTypes;
+
 const Search = React.createClass({
   propTypes: {
     shows: arrayOf(
       shape({
         title: string,
-        description: string,
         description: string
       }),
     ),
@@ -21,13 +20,12 @@ const Search = React.createClass({
         <Header showSearch />
         <div>
           {this.props.shows
-            .filter(show => {
-              return (
+            .filter(
+              show =>
                 `${show.title} ${show.description}`
                   .toUpperCase()
-                  .indexOf(this.props.searchTerm.toUpperCase()) >= 0
-              );
-            })
+                  .indexOf(this.props.searchTerm.toUpperCase()) >= 0,
+            )
             .map(show => {
               return <ShowCard key={show.imdbID} {...show} />;
             })}
@@ -37,9 +35,12 @@ const Search = React.createClass({
   }
 });
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return {
     searchTerm: state.searchTerm
   };
-}
+};
+
+export const Unwrapped = Search;
+
 export default connect(mapStateToProps)(Search);

@@ -1,2 +1,5 @@
-node_modules
-public
+node_modules/
+*bundle.js
+*bundle*
+.DS_Store
+coverage/

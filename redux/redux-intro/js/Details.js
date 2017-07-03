@@ -1,17 +1,17 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { getOMDBDetails } from './actionCreators';
-import Header from './Header';
+import React from 'react'
+import { connect } from 'react-redux'
+import { getOMDBDetails } from './actionCreators'
+import Header from './Header'
+const { shape, string, func } = React.PropTypes
 
-const { shape, string, func } = React.PropTypes;
 const Details = React.createClass({
   propTypes: {
     show: shape({
       title: string,
-      description: string,
       year: string,
       poster: string,
       trailer: string,
+      description: string,
       imdbID: string
     }),
     omdbData: shape({
@@ -19,25 +19,21 @@ const Details = React.createClass({
     }),
     dispatch: func
   },
-  componentDidMount() {
+  componentDidMount () {
     if (!this.props.omdbData.imdbRating) {
-      this.props.dispatch(getOMDBDetails(this.props.show.imdbID));
+      this.props.dispatch(getOMDBDetails(this.props.show.imdbID))
     }
   },
-  render() {
-    const { title, description, year, poster, trailer } = this.props.show;
-    const baseUrl = 'https://www.youtube-nocookie.com/embed';
-    const url = `${baseUrl}/${trailer}?rel=0&amp;control=0&amp;showinfo=0`;
-
-    let rating = undefined;
+  render () {
+    const { title, description, year, poster, trailer } = this.props.show
+    let rating
     if (this.props.omdbData.imdbRating) {
-      rating = <h3>{this.props.omdbData.imdbRating}</h3>;
+      rating = <h3>{this.props.omdbData.imdbRating}</h3>
     } else {
-      rating = <img src="/public/img/loading.png" alt="loading indicator" />;
+      rating = <img src='/public/img/loading.png' alt='loading indicator' />
     }
-
     return (
-      <div className="details">
+      <div className='details'>
         <Header />
         <section>
           <h1>{title}</h1>
@@ -47,17 +43,23 @@ const Details = React.createClass({
           <p>{description}</p>
         </section>
         <div>
-          <iframe src={url} frameBorder="0" allowFullScreen />
+          <iframe src={`https://www.youtube-nocookie.com/embed/${trailer}?rel=0&amp;controls=0&amp;showinfo=0`} frameBorder='0' allowFullScreen />
         </div>
       </div>
-    );
+    )
   }
-});
+})
 
-function mapStateToProps(state) {
+const mapStateToProps = (state, ownProps) => {
+  const omdbData = state.omdbData[ownProps.show.imdbID] ? state.omdbData[ownProps.show.imdbID] : {}
+  // if (state.omdbData[ownProps.show.imdbID]) {
+  //   omdbData = state.omdbData[ownProps.show.imdbID]
+  // } else {
+  //   omdbData = {}
+  // }
   return {
-    omdbData: state.omdbData.imdbRating
-  };
+    omdbData
+  }
 }
 
-export default connect(mapStateToProps)(Details);
+export default connect(mapStateToProps)(Details)
