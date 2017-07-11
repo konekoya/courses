@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 
 module.exports = {
   context: __dirname,
@@ -15,10 +14,6 @@ module.exports = {
     historyApiFallback: true
   },
   resolve: {
-    alias: {
-      react: 'preact-compat',
-      'react-dom': 'preact-compat'
-    },
     extensions: ['.js', '.json']
   },
   stats: {
@@ -26,13 +21,6 @@ module.exports = {
     reasons: true,
     chunks: true
   },
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: true
-      }
-    })
-  ],
   module: {
     rules: [
       {
@@ -48,7 +36,6 @@ module.exports = {
       {
         include: [
           path.resolve(__dirname, 'js'),
-          path.resolve('node_modules/preact-compat/src')
         ],
         test: /\.js$/,
         loader: 'babel-loader'
