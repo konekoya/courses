@@ -1,0 +1,18 @@
+{
+  "name": "setup-jest-math",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Joshua Lin (http://konekoya.github.io)",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.25.0",
+    "babel-preset-env": "^1.6.0",
+    "jest": "^20.0.4"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cover": "jest --coverage"
+  }
+}
