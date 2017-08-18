@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
+import Message from './components/Message';
 import logo from './logo.svg';
 import './App.css';
 
@@ -13,6 +14,7 @@ class App extends Component {
           <h2>Welcome to React with Redux</h2>
         </div>
         <div className="Todo-App">
+          <Message message="Hello there!" />
           <TodoForm />
           <TodoList />
         </div>
