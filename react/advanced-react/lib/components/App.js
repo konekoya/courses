@@ -1,9 +1,7 @@
 import React from 'react';
-
-import DataApi from '../DataApi';
-import { data } from '../testData';
-
 import ArticleList from './ArticleList';
+import DataApi from 'state-api';
+import { data } from '../testData';
 
 const api = new DataApi(data);
 

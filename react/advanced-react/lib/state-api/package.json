@@ -1,0 +1,7 @@
+{
+  "name": "state-api",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "author": "Joshua Lin (http://konekoya.github.io)",
+  "license": "MIT"
+}
