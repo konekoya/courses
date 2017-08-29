@@ -8,7 +8,7 @@ describe('ArticleList', () => {
       a: { id: 'a' },
       b: { id: 'b' },
     },
-    articleActions: {
+    store: {
       lookupAuthor: jest.fn(() => ({})),
     },
   };
