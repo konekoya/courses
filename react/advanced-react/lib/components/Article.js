@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import storeProvider from './storeProvider';
 
+console.log(storeProvider);
 const styles = {
   article: {
     paddingBottom: 10,
@@ -27,7 +29,8 @@ const styles = {
 
 const dateDisplay = dateString => new Date(dateString).toDateString();
 
-const Article = ({ article, store }) => {
+const Article = props => {
+  const { article, store } = props;
   const author = store.lookupAuthor(article.authorId);
   return (
     <div style={styles.article}>
@@ -57,4 +60,4 @@ Article.propTypes = {
   }),
 };
 
-export default Article;
+export default storeProvider(Article);

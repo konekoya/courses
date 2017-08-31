@@ -1,6 +1,8 @@
 import React from 'react';
 import ArticleList from '../ArticleList.js';
-import renderer from 'react-test-renderer';
+import Article from '../Article';
+
+import { shallow } from 'enzyme';
 
 describe('ArticleList', () => {
   const testProps = {
@@ -8,14 +10,13 @@ describe('ArticleList', () => {
       a: { id: 'a' },
       b: { id: 'b' },
     },
-    store: {
-      lookupAuthor: jest.fn(() => ({})),
-    },
   };
 
+  Article.propTypes = {};
+
   test('renders correctly', () => {
-    const tree = renderer.create(<ArticleList {...testProps} />).toJSON();
-    expect(tree.children.length).toBe(2);
-    expect(tree).toMatchSnapshot();
+    const wrapper = shallow(<ArticleList {...testProps} />);
+    expect(wrapper.find('Article').length).toBe(2);
+    expect(wrapper).toMatchSnapshot();
   });
 });
