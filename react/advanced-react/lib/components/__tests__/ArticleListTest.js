@@ -1,6 +1,5 @@
 import React from 'react';
 import ArticleList from '../ArticleList.js';
-import Article from '../Article';
 
 import { shallow } from 'enzyme';
 
@@ -12,11 +11,9 @@ describe('ArticleList', () => {
     },
   };
 
-  Article.propTypes = {};
-
   test('renders correctly', () => {
     const wrapper = shallow(<ArticleList {...testProps} />);
-    expect(wrapper.find('Article').length).toBe(2);
+    expect(wrapper.find('ArticleContainer').length).toBe(2);
     expect(wrapper).toMatchSnapshot();
   });
 });

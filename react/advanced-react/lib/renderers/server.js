@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import axios from 'axios';
-import App from 'components/App';
 import StateApi from 'state-api';
+
+import App from 'components/App';
 import config from 'config';
 
 const serverRender = async () => {
