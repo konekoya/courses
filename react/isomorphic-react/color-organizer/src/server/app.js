@@ -1,10 +1,13 @@
 import express from 'express';
 import path from 'path';
 import fs from 'fs';
+import bodyParser from 'body-parser';
 import { Provider } from 'react-redux';
 import { compose } from 'redux';
 import { StaticRouter } from 'react-router-dom';
 import { renderToString } from 'react-dom/server';
+
+import api from './color-api';
 import App from '../components/App';
 import storeFactory from '../store';
 import initialState from '../../data/initialState.json';
@@ -78,5 +81,7 @@ const respond = ({ url }, res) => res.status(200).send(htmlResponse(url));
 export default express()
   .use(logger)
   .use(fileAssets)
+  .use(bodyParser.json())
   .use(addStoreToRequestPipeline)
+  .use('/api', api)
   .use(respond);
