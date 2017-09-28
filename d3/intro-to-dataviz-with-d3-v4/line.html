@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Intro to D3.js</title>
+  <style>
+    body {
+      margin: 0;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <svg></svg>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script>
+    var city = 'New York';
+    var width = 800;
+    var height = 300;
+    var margin = { top: 20, bottom: 20, left: 20, right: 20 };
+
+    // dataset of city temperatures across time
+    d3.tsv('data.tsv', (err, data) => {
+      // clean the data
+      var data = data.slice(0, 100)
+      data.forEach(d => {
+        d.date = d3.timeParse("%Y%m%d")(d.date);
+        d.date = new Date(d.date); // x
+        d[city] = ++d[city]; // y
+      });
+
+      // scales
+      var xExtent = d3.extent(data, d => d.date);
+      var xScale = d3.scaleTime()
+        .domain(xExtent)
+        .range([margin.left, width - margin.right]);
+      //      	var yExtent = d3.extent(data, d => d[city]);
+      var yMax = d3.max(data, d => d[city]);
+      var yScale = d3.scaleLinear()
+        .domain([0, yMax])
+        .range([height - margin.bottom, margin.top]);
+      var heightScale = d3.scaleLinear()
+        .domain([0, yMax])
+        .range([0, height - margin.top - margin.bottom]);
+
+
+      var line = d3.line()
+        .x(d => xScale(d.date))
+        .y(d => yScale(d[city]))
+        .curve(d3.curveStep);
+
+      // create the line
+      var svg = d3.select('svg');
+
+      svg.append('path')
+        .attr('d', line(data))
+        .style('fill', 'none')
+        .style('stroke', 'blue');
+
+      var xAxis = d3.axisBottom()
+        .scale(xScale)
+        //       	.tickFormat(d => d3.timeFormat('%b %Y')(d));
+        .tickFormat(d3.timeFormat('%b %Y'));
+      var yAxis = d3.axisLeft()
+        .scale(yScale);
+
+      svg.append('g')
+        .attr('transform', 'translate(' + [0, height - margin.bottom] + ')')
+        .call(xAxis);
+      svg.append('g')
+        .attr('transform', 'translate(' + [margin.left, 0] + ')')
+        .call(yAxis);
+
+    });
+  </script>
+</body>
+
+</html>

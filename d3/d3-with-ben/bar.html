@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Bar</title>
+  <style>
+    .bar {
+      background-color: teal;
+      height: 20px;
+      margin-top: 2px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="chart">
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.10.2/d3.js"></script>
+  <script>
+    const data = [90, 70, 50, 30, 10]
+
+    const svg = d3.select('#chart')
+      .selectAll('div')
+      .data(data) // pair each number in the array with an empty div
+      .enter().append('div')
+      .attr('class', 'bar') // color, height, and spacing via CSS
+      .style('width', d => d + 'px')
+  </script>
+</body>
+
+</html>
