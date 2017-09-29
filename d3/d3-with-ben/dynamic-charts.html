@@ -32,21 +32,27 @@
     ]
 
     function render(subject) {
-      d3.select('#chart') // within the #chart container...
-        .selectAll('div') // select all the divs
-        .remove()         // and remove them, clearing the #chart div
+      // store a reference to the bars already on the chart
+      const bars = d3.select('#chart')
+        .selectAll('div') // this won't be empty after the first time this function runs
+        .data(data, function (d) {
+          return d.name // use the name property to match across updates
+        })
 
-      // now just repeat our creation pattern from the first example
-      d3.select('#chart')
-        .selectAll('div')
-        .data(data)
-        .enter()
-        .append('div')
+      const newBars = bars.enter() // use the enter selection
+        .append('div') // to add new bars for any data items without an existing DOM element
         .attr('class', 'bar')
+        .style('width', 0) // set the initial width to 0
+
+      // combine the selections of new and existing bars
+      // so you can act on them together
+      newBars.merge(bars)
+        .transition() // animate everything that comes after this line!
         .style('width', function (d) {
-          return d[subject] + 'px' // use the subject passed in to grab the correct property
+          return d[subject] + 'px' // set the width like normal!
         })
     }
+
 
     render('math') // render the math data when the page first loads
   </script>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Bar</title>
+  <style>
+    .bar {
+      background-color: teal;
+      height: 20px;
+      margin-top: 2px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="chart">
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.10.2/d3.js"></script>
+  <script>
+    const data = [
+      { name: 'Alice', math: 93, science: 84 },
+      { name: 'Bobby', math: 81, science: 97 },
+      { name: 'Carol', math: 74, science: 88 },
+      { name: 'David', math: 64, science: 76 },
+      { name: 'Emily', math: 80, science: 94 }
+    ]
+
+    const width = 600
+    const height = 400
+
+    const xScale = d3.scaleLinear()
+      .domain([0, 100])
+      .range([0, width])
+
+    function render(subject) {
+
+      d3.select('#chart')
+        .selectAll('div')
+        .data(data)
+        .enter()
+        .append('div')
+        .attr('class', 'bar') // color, height, and spacing via CSS
+        .style('width', function (d) {
+          // pass the score through the linear scale function
+          console.log(d[subject])
+          return xScale(d[subject]) + 'px'
+        })
+    }
+
+
+    render('math')
+  </script>
+</body>
+
+</html>
