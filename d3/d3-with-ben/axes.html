@@ -51,7 +51,7 @@
 
     // create a scale to calculate bar height
     const yScale = d3.scaleBand()
-      .domain(data.map(function (d) { return d.name }))
+      .domain(data.map(d => d.math))
       .range([0, height])
 
     // this is just a condensed version of render()
@@ -60,21 +60,19 @@
     function render(subject) {
       const bars = d3.select('#chart')
         .selectAll('div')
-        .data(data, function (d) {
-          return d.name
-        })
+        .data(data, d => d.name)
 
       bars.enter()
         .append('div')
         .attr('class', 'bar')
         .style('width', 0)
-        .style('height', function (d) {
+        .style('height', d => {
           // use the height calculated by the band scale
           return yScale.bandwidth() - 2 + 'px'
         })
         .merge(bars)
         .transition()
-        .style('width', function (d) {
+        .style('width', d => {
           // pass the score through the linear scale function
           return xScale(d[subject]) + 'px'
         })
