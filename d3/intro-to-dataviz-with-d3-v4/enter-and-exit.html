@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Intro to D3.js</title>
+  <style>
+    svg {
+      width: 800px;
+      height: 600px;
+    }
+
+    circle {
+      opacity: 0.5;
+    }
+  </style>
+</head>
+
+<body>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script>
+    // properties
+    var radius = 10;
+    var duration = 1500;
+    var width = 800;
+    var height = 600;
+    var svg = d3.select('body').append('svg');
+
+    var xScale = d3.scaleBand()
+      .rangeRound([0, width]);
+
+    var yScale = d3.scaleLinear()
+      .range([height, 0]);
+
+    var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+
+    function update(data, year) {
+      var t = d3.transition().duration(1000);
+
+      data = data.filter(function (d) {
+        return d.year === year;
+      })
+      var circles = svg.selectAll('circle')
+        .data(data, d => d.key);
+
+      // exit
+      circles
+        .exit()
+        .transition(t)
+        .attr('r', 0)
+        .remove();
+
+      // enter
+      var enter = circles.enter().append('circle')
+        .attr('r', radius)
+        .attr('cy', d => yScale(d.yield))
+        .merge(circles)
+        .attr('cx', d => xScale(d.site))
+        .attr('fill', d => colorScale(d.gen))
+        .transition(t)
+        .attr('cy', d => yScale(d.yield));
+    }
+
+    d3.csv('barley.csv', function (err, response) {
+      response.forEach(function (d) {
+        d.year = +d.year;
+        d.yield = +d.yield;
+        d.key = d.site + ':' + d.gen;
+      });
+
+      var xDomain = response.map(d => d.site)
+      xScale.domain(xDomain)
+
+      var yMax = d3.max(response, d => d.yield);
+      yScale.domain([0, yMax]);
+
+      var startYear = 1927;
+      var numYears = 9;
+      var index = 0;
+
+      // update(response, startYear);
+      setInterval(() => {
+        update(response, startYear + (index % numYears));
+        index += 1;
+      }, 1000);
+    });
+  </script>
+</body>
+
+</html>
