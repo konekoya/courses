@@ -1,0 +1,23 @@
+{
+  "name": "react-with-d3",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Joshua Lin (http://konekoya.github.io)",
+  "license": "MIT",
+  "scripts": {
+    "build": "babel App.js -d lib"
+  },
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "d3": "^4.11.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "eslint": "^4.8.0",
+    "eslint-plugin-react": "^7.4.0"
+  }
+}
