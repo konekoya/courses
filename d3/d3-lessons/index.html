@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>D3 lessons</title>
+  <style>
+    body {
+      padding-top: 50px;
+      padding-left: 100px;
+    }
+
+    svg {
+      background-color: #eee;
+    }
+
+    .bar {
+      display: inline-block;
+      width: 20px;
+      margin-right: 2px;
+      fill: teal;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="chartArea">
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
+  <script>
+    var dataset = [5, 10, 15, 20, 25];
+
+    var svg = d3.select('#chartArea').append('svg')
+      .attr({ width: 400, height: 300 });
+
+    var multiplier = 5;
+
+    svg.selectAll('rect')
+      .data(dataset)
+      .enter()
+      .append('rect')
+      .attr('class', 'bar')
+      .attr('x', (d, i) => i * 22)
+      .attr('y', (d) => 300 - d * multiplier)
+      .attr('width', 100)
+      .attr('height', d => d * multiplier);
+
+  </script>
+</body>
+
+</html>
