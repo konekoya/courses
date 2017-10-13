@@ -15,13 +15,6 @@
     svg {
       background-color: #eee;
     }
-
-    .bar {
-      display: inline-block;
-      width: 20px;
-      margin-right: 2px;
-      fill: teal;
-    }
   </style>
 </head>
 
@@ -31,23 +24,38 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js"></script>
   <script>
-    var dataset = [5, 10, 15, 20, 25];
+    const dataset = _.map(_.range(30), (i) => Math.random() * 100);
+    const width = 400;
+    const height = 300;
 
-    var svg = d3.select('#chartArea').append('svg')
-      .attr({ width: 400, height: 300 });
+    const svg = d3.select('#chartArea')
+      .append('svg')
+      .attr({ width, height });
 
-    var multiplier = 5;
+    const xScale = d3.scale.ordinal()
+      .domain(dataset)
+      .rangeBands([0, width], 0.1, 0.3);
+
+    const yScale = d3.scale.linear()
+      .domain([0, d3.max(dataset) * 1.1])
+      .range([0, height]);
+
+    const colorScale = d3.scale.linear()
+      .domain([0, d3.max(dataset)])
+      .range(['#ff4444', 'purple']);
 
     svg.selectAll('rect')
       .data(dataset)
       .enter()
       .append('rect')
       .attr('class', 'bar')
-      .attr('x', (d, i) => i * 22)
-      .attr('y', (d) => 300 - d * multiplier)
-      .attr('width', 100)
-      .attr('height', d => d * multiplier);
+      .attr('x', d => xScale(d))
+      .attr('y', d => height - yScale(d))
+      .attr('width', xScale.rangeBand())
+      .attr('height', d => yScale(d))
+      .attr('fill', (d) => colorScale(d))
 
   </script>
 </body>
