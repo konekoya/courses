@@ -26,17 +26,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js"></script>
   <script>
-    const dataset = _.map(_.range(30), (i) => Math.random() * 100);
-    const margin = { top: 20, right: 20, bottom: 20, left: 40 };
-    const width = 400 - margin.left - margin.right;
-    const height = 300 - margin.top - margin.bottom;
+    const dataset = _.map(_.range(130), (i) => Math.random() * 100);
+    const width = 400;
+    const height = 300;
 
     const svg = d3.select('#chartArea')
       .append('svg')
-      .attr('width', width + margin.left + margin.right)
-      .attr('height', height + margin.top + margin.bottom)
-      .append('g')
-      .attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')');
+      .attr({ width, height });
 
     const xScale = d3.scale.ordinal()
       .domain(dataset)
@@ -46,9 +42,9 @@
       .domain([0, d3.max(dataset) * 1.1])
       .range([0, height]);
 
-    const colorScale = d3.scale.linear()
-      .domain([0, d3.max(dataset)])
-      .range(['#ff4444', 'purple']);
+    const colorScale = d3.scale.quantile()
+      .domain([0, 10, dataset.length - 10, dataset.length])
+      .range(['#ff4444', 'blue', 'purple']);
 
     svg.selectAll('rect')
       .data(dataset)
@@ -59,7 +55,7 @@
       .attr('y', d => height - yScale(d))
       .attr('width', xScale.rangeBand())
       .attr('height', d => yScale(d))
-      .attr('fill', d => colorScale(d))
+      .attr('fill', (d, i) => colorScale(i))
 
   </script>
 </body>

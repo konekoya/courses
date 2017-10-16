@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>D3 lessons</title>
+  <style>
+    body {
+      padding-top: 50px;
+      padding-left: 100px;
+    }
+
+    svg {
+      background-color: #eee;
+    }
+
+    .dot {
+      fill: orange;
+      fill-opacity: .5;
+    }
+
+    .active {
+      fill: magenta;
+      fill-opacity: .5;
+      stroke-width: 3px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="chartArea">
+  </div>
+  <button onclick="update()">Update</button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js"></script>
+  <script>
+    const dataset = _.map(_.range(25), (i) => {
+      return {
+        x: Math.round(Math.random() * 100),
+        y: Math.round(Math.random() * 100),
+        r: Math.round(Math.random() * 15),
+      };
+    });
+
+    function update() {
+      console.log('updating...')
+      _.each(dataset, datum => {
+        datum.x = Math.round(Math.random() * 100);
+        datum.y = Math.round(Math.random() * 100);
+        datum.r = Math.round(Math.random() * 15);
+      });
+
+      svg.selectAll('circle')
+        .transition()
+        .duration(500)
+        .delay((d, i) => i * 25)
+        .attr('cx', d => xScale(d.x))
+        .style('fill', 'pink')
+        .transition()
+        .duration(500)
+        .attr('cy', d => yScale(d.y))
+        .style('fill', 'yellow')
+        .transition()
+        .duration(500)
+        .attr('r', d => d.r)
+        .style('fill', '#ff4444')
+    }
+
+    const margin = { top: 20, right: 20, bottom: 20, left: 40 };
+    const width = 400 - margin.left - margin.right;
+    const height = 300 - margin.top - margin.bottom;
+
+    const svg = d3.select('#chartArea')
+      .append('svg')
+      .attr('width', width + margin.left + margin.right)
+      .attr('height', height + margin.top + margin.bottom)
+      .append('g')
+      .attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')');
+
+    const xScale = d3.scale.linear()
+      .domain([0, 100])
+      .range([0, width]);
+
+    const yScale = d3.scale.linear()
+      .domain([0, d3.max(dataset, d => d.y)])
+      .range([0, height]);
+
+    const colorScale = d3.scale.linear()
+      .domain([0, d3.max(dataset, d => d.y)])
+      .range(['#ff4444', 'purple']);
+
+    svg.selectAll('circle')
+      .data(dataset)
+      .enter()
+      .append('circle')
+      .attr('class', 'dot')
+      .attr('cx', d => xScale(d.x))
+      .attr('cy', d => yScale(d.y))
+      .attr('r', d => d.r)
+      .style('fill', d => d.y)
+      .on('mouseover', function (d) {
+        d3.select(this).classed('active', true);
+      })
+      .on('mouseout', function (d) {
+        d3.select(this).classed('active', false);
+      })
+      .on('mousedown', function (d) {
+        d3.select(this).attr('r', d.r * 2);
+      })
+      .on('mouseup', function (d) {
+        d3.select(this).attr('r', d.r);
+      })
+
+  </script>
+</body>
+
+</html>
