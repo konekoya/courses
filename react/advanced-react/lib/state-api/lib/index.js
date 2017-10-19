@@ -4,7 +4,10 @@ class StateApi {
       articles: this.mapIntoObject(rawData.articles),
       authors: this.mapIntoObject(rawData.authors),
       searchTerm: '',
+      timestamp: '',
     };
+    this.subscriptions = {};
+    this.lastSubscriptionId = 1;
   }
 
   mapIntoObject(arr) {
@@ -16,6 +19,42 @@ class StateApi {
 
   lookupAuthor = authorId => {
     return this.data.authors[authorId];
+  };
+
+  subscribe = cb => {
+    this.lastSubscriptionId++;
+    this.subscriptions[this.lastSubscriptionId] = cb;
+  };
+
+  unsubscribe = subscriptionId => {
+    delete this.subscriptions[subscriptionId];
+  };
+
+  notifySubscribers = () => {
+    Object.values(this.subscriptions).forEach(cb => cb());
+  };
+
+  mergeWithState = stateChange => {
+    this.data = {
+      ...this.data,
+      ...stateChange,
+    };
+
+    this.notifySubscribers();
+  };
+
+  setSearchTerm = searchTerm => {
+    this.mergeWithState({
+      searchTerm,
+    });
+  };
+
+  startClock = () => {
+    setInterval(() => {
+      this.mergeWithState({
+        timestamp: new Date(),
+      });
+    }, 1000);
   };
 
   getState = () => {

@@ -1,5 +1,6 @@
 import React from 'react';
 import debounce from 'lodash.debounce';
+import storeProvider from './storeProvider';
 
 class SearchBar extends React.Component {
   state = {
@@ -7,8 +8,7 @@ class SearchBar extends React.Component {
   };
 
   doSearch = debounce(() => {
-    console.log(this.state.searchTerm);
-    this.props.doSearch(this.state.searchTerm);
+    this.props.store.setSearchTerm(this.state.searchTerm);
   }, 300);
 
   handleSearch = e => {
@@ -29,4 +29,4 @@ class SearchBar extends React.Component {
   }
 }
 
-export default SearchBar;
+export default storeProvider()(SearchBar);
