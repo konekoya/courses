@@ -7,23 +7,25 @@ class StateApi {
       timestamp: '',
     };
     this.subscriptions = {};
-    this.lastSubscriptionId = 1;
+    this.lastSubscriptionId = 0;
   }
-
   mapIntoObject(arr) {
     return arr.reduce((acc, curr) => {
       acc[curr.id] = curr;
       return acc;
     }, {});
   }
-
   lookupAuthor = authorId => {
     return this.data.authors[authorId];
+  };
+  getState = () => {
+    return this.data;
   };
 
   subscribe = cb => {
     this.lastSubscriptionId++;
     this.subscriptions[this.lastSubscriptionId] = cb;
+    return this.lastSubscriptionId;
   };
 
   unsubscribe = subscriptionId => {
@@ -39,7 +41,6 @@ class StateApi {
       ...this.data,
       ...stateChange,
     };
-
     this.notifySubscribers();
   };
 
@@ -55,10 +56,6 @@ class StateApi {
         timestamp: new Date(),
       });
     }, 1000);
-  };
-
-  getState = () => {
-    return this.data;
   };
 }
 

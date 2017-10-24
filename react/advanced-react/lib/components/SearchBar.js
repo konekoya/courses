@@ -17,6 +17,14 @@ class SearchBar extends React.Component {
     });
   };
 
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return true;
+  // }
+
+  // componentWillUpdate() {
+  //   console.log('Updating SearchBar');
+  // }
+
   render() {
     return (
       <input
