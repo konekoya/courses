@@ -2,7 +2,7 @@ import React from 'react';
 import debounce from 'lodash.debounce';
 import storeProvider from './storeProvider';
 
-class SearchBar extends React.Component {
+class SearchBar extends React.PureComponent {
   state = {
     searchTerm: '',
   };
@@ -16,14 +16,6 @@ class SearchBar extends React.Component {
       this.doSearch();
     });
   };
-
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return true;
-  // }
-
-  // componentWillUpdate() {
-  //   console.log('Updating SearchBar');
-  // }
 
   render() {
     return (
