@@ -11,7 +11,7 @@ if (typeof window !== 'undefined') {
   window.Perf = Perf;
 }
 
-class App extends React.Component {
+class App extends React.PureComponent {
   static childContextTypes = {
     store: PropTypes.object,
   };
@@ -22,10 +22,15 @@ class App extends React.Component {
     };
   }
 
-  state = this.props.store.getState();
+  appState = () => {
+    const { articles, searchTerm } = this.props.store.getState();
+    return { articles, searchTerm };
+  };
+
+  state = this.appState();
 
   onStoreChange = () => {
-    this.setState(this.props.store.getState());
+    this.setState(this.appState);
   };
 
   componentDidMount() {

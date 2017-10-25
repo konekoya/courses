@@ -4,10 +4,25 @@ class StateApi {
       articles: this.mapIntoObject(rawData.articles),
       authors: this.mapIntoObject(rawData.authors),
       searchTerm: '',
-      timestamp: '',
+      timestamp: new Date(),
     };
     this.subscriptions = {};
     this.lastSubscriptionId = 0;
+
+    setTimeout(() => {
+      const fakeArticle = {
+        ...rawData.articles[0],
+        id: 'fakeArticleId',
+      };
+      this.data = {
+        ...this.data,
+        articles: {
+          ...this.data.articles,
+          [fakeArticle.id]: fakeArticle,
+        },
+      };
+      this.notifySubscribers();
+    }, 1000);
   }
   mapIntoObject(arr) {
     return arr.reduce((acc, curr) => {
