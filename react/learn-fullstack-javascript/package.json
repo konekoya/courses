@@ -5,7 +5,8 @@
   "main": ".eslintrc.js",
   "scripts": {
     "start": "nodemon --exec babel-node server.js --ignore public/",
-    "dev": "webpack -wd"
+    "dev": "webpack -wd",
+    "server": "babel-node server.js"
   },
   "keywords": [],
   "author": "konekoya <tank158r5155@yahoo.com.tw> (http://konekoya.github.io/)",
