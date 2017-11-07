@@ -2,16 +2,17 @@ import React from 'react';
 
 import Header from './Header';
 import ContestPreview from './ContestPreview';
-import data from '../testData';
 
 class App extends React.Component {
-  state = {
-    contests: [],
+  static propTypes = {
+    initialContests: React.PropTypes.array,
   };
 
-  componentWillMount() {
-    this.setState({ contests: data.contests });
-  }
+  state = {
+    contests: this.props.initialContests,
+  };
+
+  componentDidMount() {}
 
   render() {
     return (
