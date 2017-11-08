@@ -1,7 +1,12 @@
 import React from 'react';
 
 import Header from './Header';
-import ContestPreview from './ContestPreview';
+import ContestList from './contestList';
+import Contest from './Contest';
+
+const pushState = (obj, url) => {
+  window.history.pushState(obj, '', url);
+};
 
 class App extends React.Component {
   static propTypes = {
@@ -10,19 +15,34 @@ class App extends React.Component {
 
   state = {
     contests: this.props.initialContests,
+    pageHeader: 'Naming contest',
   };
 
-  componentDidMount() {}
+  fetchContent = contestId => {
+    pushState({ currentContestId: contestId }, `/contest/${contestId}`);
+    this.setState({
+      pageHeader: this.state.contests[contestId].contestName,
+      currentContestId: contestId,
+    });
+  };
+
+  currentContent = () => {
+    if (this.state.currentContestId) {
+      return <Contest {...this.state.contests[this.state.currentContestId]} />;
+    }
+    return (
+      <ContestList
+        onContestClick={this.fetchContent}
+        contests={this.state.contests}
+      />
+    );
+  };
 
   render() {
     return (
       <div className="App">
-        <Header message="Naming Contests!!" />
-        <div>
-          {this.state.contests.map(contest => {
-            return <ContestPreview key={contest.id} {...contest} />;
-          })}
-        </div>
+        <Header message={this.state.pageHeader} />
+        {this.currentContent()}
       </div>
     );
   }
