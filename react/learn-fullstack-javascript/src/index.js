@@ -5,6 +5,6 @@ import App from './components/App';
 import '../css/styles.css';
 
 ReactDOM.render(
-  <App initialContests={window.initialData.contests} />,
+  <App initialData={window.initialData} />,
   document.getElementById('root'),
 );
