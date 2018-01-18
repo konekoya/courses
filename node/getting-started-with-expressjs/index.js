@@ -14,7 +14,15 @@ fs.readFile('users.json', { encoding: 'utf8' }, function(err, data) {
   });
 });
 
-app.get('/', function(req, res) {});
+app.get('/', function(req, res) {
+  const buffer = users
+    .map(user => {
+      return `<a href="${user.username}">${user.name.full}</a>`;
+    })
+    .reduce((acc, cur) => acc + '<br>' + cur);
+
+  res.send(buffer);
+});
 
 app.get(/big.*/, function(req, res, next) {
   console.log('BIG USER ACCESS');
