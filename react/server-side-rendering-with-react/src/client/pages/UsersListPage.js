@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchUsers } from '../actions';
 
-class UsersList extends React.Component {
+class UsersListPage extends React.Component {
   componentDidMount() {
     this.props.fetchUsers();
   }
@@ -38,5 +38,5 @@ export { loadData };
 
 export default {
   loadData,
-  component: connect(mapStateToProps, { fetchUsers })(UsersList),
+  component: connect(mapStateToProps, { fetchUsers })(UsersListPage),
 };
