@@ -6,6 +6,7 @@ Usage:
 import sys
 from urllib.request import urlopen
 
+
 def fetch_words(url):
     """Fech a list of words from a URL
     Args:

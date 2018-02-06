@@ -4,5 +4,6 @@ def banner(message, border='-'):
     print(message)
     print(line)
 
+
 def minmax(items):
-    return min(items), max(itms)
+    return min(items), max(items)
