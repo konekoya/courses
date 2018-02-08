@@ -1,0 +1,10 @@
+{
+  "name": "crawler",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Joshua Lin (http://konekoya.github.io)",
+  "license": "MIT",
+  "dependencies": {
+    "request": "^2.83.0"
+  }
+}
