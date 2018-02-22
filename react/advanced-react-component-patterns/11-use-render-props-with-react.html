@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Hadle prop namespace clashes</title>
+  <title>Use Render props with React</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Antic+Slab" rel="stylesheet">
   <style>
@@ -83,30 +83,7 @@
 
   <script type="text/babel">
 
-    const TOGGLE_CONTEXT = '__toggle__';
-
-    const ToggleOn = withToggle(({children, toggle: { on }}) => {
-      return on ? children : null
-    });
-
-    const ToggleOff = withToggle(({children, toggle: { on }}) => {
-      return on ? null : children
-    });
-
-    const ToggleButton = withToggle(({toggle: { on, toggle }, ...props}) => {
-      return (
-        <Switch on={on} onClick={toggle} {...props} />
-      )
-    });
-
-    class Toggle extends React.Component {
-      static On = ToggleOn;
-      static Off = ToggleOff;
-      static Button = ToggleButton;
-
-      static childContextTypes = {
-        [TOGGLE_CONTEXT]: PropTypes.object.isRequired,
-      }
+     class Toggle extends React.Component {
 
       static defaultProps = {
         onToggle: () => {
@@ -124,71 +101,24 @@
         });
       }
 
-      getChildContext() {
-        return {
-          [TOGGLE_CONTEXT]: {
+      render() {
+          return this.props.render({
             on: this.state.on,
-            toggle: this.toggle,
-          },
+            toggle: this.toggle
+          });
         }
       }
 
-      render() {
+
+      function App() {
         return (
-          <div>{this.props.children}</div>
-        );
+          <Toggle onToggle={on => console.log('toggle', on)} render={({ on, toggle }) => {
+            return (
+              <Switch on={on} onClick={toggle} />
+           );
+          }} />
+        )
       }
-    }
-
-
-    function withToggle(Component) {
-      function Wrapper(props, context) {
-        const toggleContext = context[TOGGLE_CONTEXT];
-        console.log(toggleContext);
-        return (
-          <Component { ...props } toggle={toggleContext}  />
-        );
-      }
-
-      Wrapper.contextTypes = {
-        [TOGGLE_CONTEXT]: PropTypes.object.isRequired,
-      }
-
-      return Wrapper;
-    }
-
-    const MyEventComponent = withToggle(
-      function MyEventComponent({toggle, on, event}) {
-        const props = {[event]: on}
-        return toggle.on ? (
-          <button {...props}>
-            The {event} event
-          </button>
-        ) : null
-      },
-    )
-
-    const MyToggle = withToggle(({toggle: { on, toggle } }) => (
-      <button onClick={toggle}>{on? 'on' : 'off'}</button>
-    ));
-
-
-    function App() {
-      return (
-        <Toggle onToggle={on => console.log('toggle', on)}>
-          <Toggle.On>The button is on</Toggle.On>
-          <Toggle.Off>The button is Off</Toggle.Off>
-          <Toggle.Button />
-          <hr />
-          <MyToggle />
-          <hr />
-          <MyEventComponent
-            event="onClick"
-            on={e => alert(e.type)}
-          />
-        </Toggle>
-      )
-    }
 
     /*
     *
