@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Use Prop getters with render props</title>
+  <title>Use component state initializer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Antic+Slab" rel="stylesheet">
   <style>
@@ -82,18 +82,26 @@
   <script type="text/babel">
 
       const compose = (...fns) => (...args) =>
-        fns.forEach(fn => fn && fn(...args));
+      fns.forEach(fn => fn && fn(...args));
 
      class Toggle extends React.Component {
 
       static defaultProps = {
-        onToggle: () => {
-          console.log('Taking default prop');
-        }
+        defaultOn: false,
+        onToggle: () => {},
+        onReset: () => {}
       }
 
-      state = {
-        on: false
+      initialState = {
+        on: this.props.defaultOn
+      }
+
+      state = this.initialState;
+
+      reset = () => {
+        this.setState(this.initialState, () => {
+          this.props.onReset(this.state.on)
+        }); 
       }
 
       toggle = () => {
@@ -114,6 +122,7 @@
           return this.props.render({
             on: this.state.on,
             toggle: this.toggle,
+            reset: this.reset,
             getTogglerProps: this.getTogglerProps
           });
         }
@@ -122,24 +131,27 @@
 
       function App() {
         return (
-          <Toggle onToggle={on => console.log('toggle', on)} render={({ on, toggle, getTogglerProps }) => {
-            return (
+          <Toggle
+            defaultOn={true}
+            onToggle={on => console.log('toggle', on)}
+            onReset={on => console.log('reset', on)}
+            render={toggle => (
               <div>
-                <Switch on={on} {...getTogglerProps()} />
+                <Switch
+                  {...toggle.getTogglerProps({
+                    on: toggle.on,
+                  })}
+                />
                 <hr />
-                <button
-                  { ...getTogglerProps({
-                      onClick: () => alert('Hi!')
-                    })
-                  } 
-                >
-                  { on ? 'on' : 'off'}
+                <button onClick={() => toggle.reset()}>
+                  Reset
                 </button>
               </div>
-           );
-          }} />
+            )}
+          />
         )
       }
+
 
     /*
     *
