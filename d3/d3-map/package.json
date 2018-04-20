@@ -1,0 +1,10 @@
+{
+  "name": "d3-map",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Joshua Lin (http://konekoya.github.io)",
+  "license": "MIT",
+  "dependencies": {
+    "topojson": "^3.0.2"
+  }
+}
