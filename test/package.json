@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "faker": "^4.1.0",
+    "jest": "^22.4.3",
+    "jest-cli": "^22.4.3",
+    "puppeteer": "^1.3.0"
+  }
+}

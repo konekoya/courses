@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    circle {
+      animation: grow 2s infinite;
+      transform-origin: center;
+    }
+
+    @keyframes grow {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(0.5);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <svg width="80" height="110" xmlns="http://www.w3c.org/2000/svg" version="1.1">
+    <rect height="100px" width="70px" fill="white" stroke="#ff2626" stroke-width="10" x="5" y="5" rx="5" />
+    <circle cx="40" cy="105" r="3" fill="white" />
+  </svg>
+</body>
+
+</html>
