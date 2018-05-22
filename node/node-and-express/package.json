@@ -1,10 +1,36 @@
 {
+  "scripts": {
+    "start": "DEBUG=app nodemon app.js",
+    "lint": "eslint app.js"
+  },
   "dependencies": {
-    "bootstrap": "4.1.1",
+    "bootstrap": "3.3.7",
     "chalk": "2.4.1",
     "debug": "3.1.0",
+    "ejs": "2.6.1",
     "express": "4.16.3",
     "jquery": "3.3.1",
-    "morgan": "1.9.0"
+    "morgan": "1.9.0",
+    "nodemon": "1.17.4",
+    "popper.js": "1.14.3",
+    "pug": "2.0.3"
+  },
+  "devDependencies": {
+    "babel-eslint": "8.2.3",
+    "eslint": "4.19.1",
+    "eslint-config-airbnb-base": "12.1.0",
+    "eslint-plugin-import": "2.12.0",
+    "eslint-plugin-react": "7.8.2"
+  },
+  "nodemonConfig": {
+    "restartable": "rs",
+    "ignore": [
+      "node_modules/**/node_modules"
+    ],
+    "delay": 250,
+    "env": {
+      "NODE_ENV": "development",
+      "PORT": 5000
+    }
   }
 }
