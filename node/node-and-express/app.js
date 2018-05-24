@@ -6,11 +6,13 @@ const path = require('path');
 
 const app = express();
 const port = process.env.PORT || 5000;
-const bookRouter = express.Router();
 
 app.use(morgan('combined'));
-
 app.use(express.static(path.join(__dirname, '/public/')));
+
+app.set('views', './src/views');
+app.set('view engine', 'ejs');
+
 app.use(
   '/css',
   express.static(path.join(__dirname, '/node_modules/bootstrap/dist/css')),
@@ -28,55 +30,12 @@ app.use(
   express.static(path.join(__dirname, '/node_modules/popper.js/dist/umd')),
 );
 
-app.set('views', './src/views');
-app.set('view engine', 'ejs');
-
-const books = [
-  {
-    title: 'War and Peace',
-    genre: 'Historical Fiction',
-    author: 'Lev Nikolayevich Tolstoy',
-    read: false,
-  },
-  {
-    title: 'Les Miserables',
-    genre: 'Historical Fiction',
-    author: 'Victor Hugo',
-    read: false,
-  },
-  {
-    title: 'The Time Machine',
-    genre: 'Science Fiction',
-    author: 'H. G. Wells',
-    read: false,
-  },
-  {
-    title: 'The Dark World',
-    genre: 'Fantasy',
-    author: 'Henry Kuttner',
-    read: false,
-  },
-  {
-    title: 'The Wind in the Willows',
-    genre: 'Fantasy',
-    author: 'Kenneth Grahame',
-    read: false,
-  },
+const nav = [
+  { link: '/books', title: 'Books' },
+  { link: '/authors', title: 'Authorssss' },
 ];
-bookRouter.route('/').get((req, res) => {
-  res.render('books', {
-    title: 'Library',
-    nav: [
-      { link: '/books', title: 'Books' },
-      { link: '/authors', title: 'Authors' },
-    ],
-    books,
-  });
-});
 
-bookRouter.route('/single').get((req, res) => {
-  res.send('hello single book');
-});
+const bookRouter = require('./src/routes/bookRoutes')(nav);
 
 app.use('/books', bookRouter);
 
