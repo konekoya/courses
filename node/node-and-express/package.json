@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "DEBUG=app nodemon app.js",
+    "start": "DEBUG=app,app:* nodemon app.js",
     "lint": "eslint app.js"
   },
   "dependencies": {
@@ -13,8 +13,7 @@
     "mongodb": "3.1.0-beta4",
     "morgan": "1.9.0",
     "nodemon": "1.17.4",
-    "popper.js": "1.14.3",
-    "pug": "2.0.3"
+    "popper.js": "1.14.3"
   },
   "devDependencies": {
     "babel-eslint": "8.2.3",
@@ -25,9 +24,7 @@
   },
   "nodemonConfig": {
     "restartable": "rs",
-    "ignore": [
-      "node_modules/**/node_modules"
-    ],
+    "ignore": ["node_modules/**/node_modules"],
     "delay": 250,
     "env": {
       "NODE_ENV": "development",

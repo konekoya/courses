@@ -3,7 +3,6 @@ const { MongoClient } = require('mongodb');
 const debug = require('debug')('app:adminRoutes');
 
 const adminRouter = express.Router();
-
 const books = [
   {
     title: 'War and Peace',
@@ -12,7 +11,7 @@ const books = [
     read: false,
   },
   {
-    title: 'Les Miserables',
+    title: 'Les Misérables',
     genre: 'Historical Fiction',
     author: 'Victor Hugo',
     read: false,
@@ -21,6 +20,12 @@ const books = [
     title: 'The Time Machine',
     genre: 'Science Fiction',
     author: 'H. G. Wells',
+    read: false,
+  },
+  {
+    title: 'A Journey into the Center of the Earth',
+    genre: 'Science Fiction',
+    author: 'Jules Verne',
     read: false,
   },
   {
@@ -35,18 +40,31 @@ const books = [
     author: 'Kenneth Grahame',
     read: false,
   },
+  {
+    title: 'Life On The Mississippi',
+    genre: 'History',
+    author: 'Mark Twain',
+    read: false,
+  },
+  {
+    title: 'Childhood',
+    genre: 'Biography',
+    author: 'Lev Nikolayevich Tolstoy',
+    read: false,
+  },
 ];
 
 function router(nav) {
   adminRouter.route('/').get((req, res) => {
     const url = 'mongodb://localhost:27017';
-    const dbName = 'LibraryApp';
+    const dbName = 'libraryApp';
 
     (async function mongo() {
       let client;
       try {
         client = await MongoClient.connect(url);
-        debug('Connected to the server');
+        debug('Connected correctly to server');
+
         const db = client.db(dbName);
 
         const response = await db.collection('books').insertMany(books);
@@ -56,10 +74,8 @@ function router(nav) {
       }
 
       client.close();
-    })();
-    res.send('Inserting books');
+    }());
   });
-
   return adminRouter;
 }
 
