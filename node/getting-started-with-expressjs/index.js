@@ -3,6 +3,8 @@ var app = express();
 
 var fs = require('fs');
 var _ = require('lodash');
+var bodyParser = require('body-parser')
+
 var users = [];
 
 fs.readFile('users.json', { encoding: 'utf8' }, function(err, data) {
