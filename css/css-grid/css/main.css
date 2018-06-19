@@ -1,23 +1,32 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
 
+body,
+html {
+  height: 100%;
+}
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
   display: grid;
-  grid-template-rows: 51px 30%;
+  grid-template-rows: auto 50px;
+  grid-template-columns: 12% auto;
+  grid-template-areas:
+    'sidebar right'
+    'footer footer';
 }
-
 a {
   text-decoration: none;
 }
-
 ul {
   list-style-type: none;
   float: right;
 }
-
 ul li {
   display: inline;
+}
+ul li a {
+  color: #fff;
+  padding: 15px;
 }
 
 #logo {
@@ -25,25 +34,22 @@ ul li {
   margin-left: 15px;
   background-color: #f3f1c7;
   color: #298383;
+  text-align: center;
   font-weight: bold;
-  /* display: inline-block; */
+  display: inline-block;
 }
-
-ul li a {
-  color: #fff;
-}
-
 header {
   background-color: #41c7c7;
 
   display: grid;
-  grid-template-columns: fit-content(20%) auto;
+  grid-template-columns: [logo-start] fit-content(20%) [nav-start] auto [nav-end];
 }
 
-#hero {
+section#hero {
   background-color: #36adad;
   padding: 2em;
   border-top: 5px solid #2ea0a0;
+
   display: grid;
   grid-template-columns: repeat(2, auto);
 }
@@ -55,4 +61,55 @@ header {
 
 #content p {
   color: #fff;
+}
+
+img {
+  max-width: 100%;
+  background-size: cover;
+  margin: 0 auto;
+}
+
+#mountain {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background: #1c9090;
+  color: #fff;
+  padding: 1em;
+}
+
+.main {
+  grid-area: right;
+  grid-template-rows: 51px fit-content(30%);
+  display: grid;
+}
+
+footer {
+  grid-area: footer;
+  background: lightgray;
+}
+
+#features {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+#features i {
+  font-size: 2em;
+}
+
+#features li {
+  background-color: lightgray;
+  padding: 1em;
+}
+
+#features li p {
+  color: #4c4c4c;
 }
