@@ -13,5 +13,11 @@ export const resolvers = {
     async createProduct(_, { input }) {
       return await Product.create(input);
     },
+    async updateProduct(_, { _id, input }) {
+      return await Product.findOneAndUpdate({ _id }, input);
+    },
+    async deleteProduct(_, { _id }) {
+      return await Product.findByIdAndRemove(_id);
+    },
   },
 };
