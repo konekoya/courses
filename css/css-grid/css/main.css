@@ -40,7 +40,7 @@ ul li a {
 }
 header {
   background-color: #41c7c7;
-
+  grid-area: head;
   display: grid;
   grid-template-columns: [logo-start] fit-content(20%) [nav-start] auto [nav-end];
 }
@@ -49,7 +49,7 @@ section#hero {
   background-color: #36adad;
   padding: 2em;
   border-top: 5px solid #2ea0a0;
-
+  grid-area: hero;
   display: grid;
   grid-template-columns: repeat(2, auto);
 }
@@ -84,8 +84,13 @@ img {
 
 .main {
   grid-area: right;
-  grid-template-rows: 51px fit-content(30%) 40%;
+  grid-template-rows: 51px fit-content(30%) 40% auto;
   display: grid;
+  grid-template-areas:
+    'head'
+    'hero'
+    'invention'
+    'features';
 }
 
 footer {
@@ -95,6 +100,7 @@ footer {
 
 #features {
   display: grid;
+  grid-area: features;
   grid-template-columns: repeat(5, auto);
   text-align: center;
   margin: 0;
@@ -144,7 +150,7 @@ footer {
 #info {
   background-color: #f2f2f2;
   padding: 2em;
-
+  grid-area: invention;
   display: grid;
   grid-template-columns: 1.5fr 1fr;
   align-items: space-around;
@@ -153,4 +159,110 @@ footer {
 #mountain-vector {
   width: 200px;
   align-self: center;
+}
+
+@media screen and (max-width: 60em) {
+  .sidebar {
+    display: none;
+  }
+
+  body {
+    grid-template-columns: auto;
+    grid-template-areas:
+      'right'
+      'footer';
+  }
+
+  .main {
+    grid-template-areas:
+      'head'
+      'hero'
+      'features'
+      'invention';
+  }
+
+  #features {
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(3, auto);
+  }
+
+  #features li:nth-child(5) {
+    grid-column: 1 / span 2;
+  }
+}
+
+@media screen and (max-width: 40em) {
+  .main {
+    grid-template-rows: auto fit-content(30%) 40% auto;
+  }
+
+  header {
+    grid-template-columns: auto;
+    grid-template-rows: repeat(2, auto);
+  }
+
+  #logo {
+    margin-left: 0;
+  }
+
+  nav ul {
+    float: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+
+  nav ul li a {
+    width: calc(25% - 35px);
+    display: inline-block;
+    font-size: 0.9em;
+  }
+
+  section#hero,
+  section#info {
+    grid-template-columns: auto;
+    text-align: center;
+  }
+
+  .main {
+    grid-template-areas:
+      'head'
+      'hero'
+      'invention'
+      'features';
+  }
+
+  h1,
+  h2 {
+    font-size: 1.2em;
+  }
+
+  #mountain {
+    width: 100px;
+    height: 100px;
+  }
+
+  #content p,
+  #content2 p {
+    font-size: 0.9em;
+  }
+
+  #features {
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(4, auto);
+  }
+
+  #features li:nth-child(2),
+  #features li:nth-child(1) {
+    grid-column: 1 / span 2;
+  }
+
+  footer {
+    background-color: #41c7c7;
+  }
+
+  footer p {
+    color: #fff;
+    text-align: center;
+  }
 }
