@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+
+    const votes = [
+      'anguler',
+      'anguler',
+      'react',
+      'react',
+      'react',
+      'anguler',
+      'ember',
+      'react',
+      'vanilla'
+    ];
+
+    const intialValue = {};
+
+    const reducer = (tally, vote) => {
+      if (!tally[vote]) {
+        tally[vote] = 1;
+      } else {
+        tally[vote] = tally[vote] + 1;
+      }
+
+      return tally;
+    };
+
+    const result = votes.reduce(reducer, intialValue);
+    console.log(result);
+
+
+
+  </script>
+</body>
+
+</html>
