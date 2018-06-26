@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+
+    // Two takeaways here:
+
+    // Number one: always pass in an initial value for your accumulator. Never rely on the fact that it'll automatically work when you're summing numbers, because the bugs you're going to find are really quite magnificent.
+
+    // Number two: always double check and make that you're actually returning the accumulator
+
+    function reducer(acc, val) {
+      return acc + val
+    }
+
+    const data = ['1', 2, 3, 4]
+
+    const result = data.reduce(reducer)
+    console.log(result);
+
+  </script>
+</body>
+
+</html>

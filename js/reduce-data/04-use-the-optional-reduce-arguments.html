@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    function reducer(acc, val, idx, arr) {
+      const sum = acc + val;
+
+      if (idx === arr.length - 1) {
+        return sum / arr.length;
+      }
+
+      return sum;
+    }
+
+    const data = [7, 20, 10, 3]
+
+    const mean = data.reduce(reducer, 0)
+
+    console.log(mean);
+
+
+
+  </script>
+</body>
+
+</html>
