@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+
+    function increment(input) {
+      return input + 1;
+    }
+
+    function decrement(input) {
+      return input - 1;
+    }
+
+    function double(input) {
+      return input * 2;
+    }
+
+    function halve(input) {
+      return input / 2;
+    }
+
+    const initialValue = 1;
+
+    const pipeline = [
+      increment,
+      increment,
+      double,
+      double,
+    ];
+
+    const result = pipeline.reduceRight((acc, fn) => {
+      return fn(acc);
+    }, initialValue)
+
+    console.log(result);
+
+
+  </script>
+</body>
+
+</html>
