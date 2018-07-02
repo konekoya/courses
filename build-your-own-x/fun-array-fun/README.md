@@ -15,7 +15,7 @@ OP in short:
 Data:
 
 ```json
-const data = [
+[
   {
     "id": 0,
     "title": "happy dayys",
