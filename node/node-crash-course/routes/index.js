@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const storeController = require('../controllers/storeController');
 
 // Do work here
-router.get('/', (req, res) => {
-  res.render('hello', { title: 'I love food' });
-});
+router.get('/', storeController.middleware, storeController.homePage);
 
 router.get('/reverse/:name', (req, res) => {
   const reverse = req.params.name.reverse().join;
