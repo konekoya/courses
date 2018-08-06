@@ -1,0 +1,10 @@
+{
+  "name": "node-cli",
+  "bin": {
+    "twine": "./bin/twine.js"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Joshua Lin (http://konekoya.github.io)",
+  "license": "MIT"
+}
