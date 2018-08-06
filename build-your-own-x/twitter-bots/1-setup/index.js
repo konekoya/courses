@@ -10,10 +10,48 @@ const bot = new twit({
   timeout_ms: 60 * 1000,
 });
 
-bot.post('statuses/update', { status: 'Hello world' }, (err, data, res) => {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log(`${data.text} was tweeted.`);
-  }
-});
+// post a tweet
+// bot.post('statuses/update', { status: 'Hello world' }, (err, data, res) => {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log(`${data.text} was tweeted.`);
+//   }
+// });
+
+// get follower list
+// bot.get('/followers/list', { screen_name: 'konekoya' }, (err, data, res) => {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     data.users.forEach(user => {
+//       console.log(user.screen_name);
+//     });
+//   }
+// });
+
+// get following list
+// bot.get('/friends/list', { screen_name: 'konekoya' }, (err, data, res) => {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log(data);
+//   }
+// });
+
+function getBotTimeline() {
+  bot.get('/statuses/home_timeline', { count: 5 }, (err, data, res) => {
+    if (err) {
+      console.log(err);
+    } else {
+      data.forEach(d => {
+        console.log(d.text);
+        console.log(d.user.screen_name);
+        console.log(d.id_str);
+        console.log('\n');
+      });
+    }
+  });
+}
+
+getBotTimeline();
