@@ -1,7 +1,7 @@
 {
   "name": "advanced-node",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "main.js",
   "author": "Joshua Lin (http://konekoya.github.io)",
   "license": "MIT"
 }

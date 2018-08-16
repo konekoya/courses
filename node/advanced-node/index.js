@@ -1,3 +1,2 @@
-require('./util');
-
-console.log(a);
+require('./ascii-art')();
+require('./ascii-art')();

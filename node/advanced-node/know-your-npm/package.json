@@ -1,0 +1,12 @@
+{
+  "name": "know-your-npm",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Joshua Lin (http://konekoya.github.io)",
+  "license": "MIT",
+  "dependencies": {
+    "express": "expressjs/express",
+    "react": "^16.4.2",
+    "redux": "^4.0.0"
+  }
+}
