@@ -109,3 +109,7 @@ exports.getStoresByTag = async (req, res) => {
 
   res.render('tags', { tags, title: 'Tags', tag, stores });
 };
+
+exports.search = async (req, res) => {
+  res.json({ it: 'works' });
+};
