@@ -13,18 +13,12 @@ function searchResultsHTML(stores) {
 }
 
 function typeAhead(search) {
-  console.log(search);
-
   if (!search) return;
 
   const searchInput = search.querySelector('input[name="search"]');
   const searchResults = search.querySelector('.search__results');
 
-  console.log(searchInput, searchResults);
-
   searchInput.on('input', function() {
-    console.log(this.value);
-
     if (!this.value) {
       searchResults.style.display = 'none';
       return;
@@ -43,6 +37,35 @@ function typeAhead(search) {
       .catch(err => {
         console.error(err);
       });
+  });
+
+  searchInput.on('keyup', e => {
+    if (![38, 40, 13].includes(e.keyCode)) return;
+
+    const activeClass = 'search__result--active';
+    const current = search.querySelector(`.${activeClass}`);
+    const items = search.querySelectorAll('.search__result');
+    const key = e.keyCode;
+    let next = null;
+
+    if (key === 40 && current) {
+      next = current.nextElementSibling || items[0];
+    } else if (key === 40) {
+      next = items[0];
+    } else if (key === 38 && current) {
+      next = current.previousElementSibling || items[items.length - 1];
+    } else if (key === 38) {
+      next = items[items.length - 1];
+    } else if (key === 13 && current.href) {
+      window.location = current.href;
+      return;
+    }
+
+    if (current) {
+      current.classList.remove(activeClass);
+    }
+
+    next.classList.add(activeClass);
   });
 }
 
