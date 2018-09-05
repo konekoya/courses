@@ -1,0 +1,12 @@
+{
+  "name": "docker-for-web-dev",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "konekoya <tank158r5155@yahoo.com.tw> (http://konekoya.github.io/)",
+  "license": "MIT"
+}
