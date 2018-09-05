@@ -144,3 +144,7 @@ exports.mapStores = async (req, res) => {
     .limit(10);
   res.json(stores);
 };
+
+exports.mapPage = (req, res) => {
+  res.render('map', { title: 'Map' });
+};
