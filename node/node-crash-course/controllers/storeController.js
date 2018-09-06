@@ -135,12 +135,12 @@ exports.mapStores = async (req, res) => {
           type: 'Point',
           coordinates,
         },
-        // $maxDistance: 10000,
+        $maxDistance: 10000,
       },
     },
   };
   const stores = await Store.find(q)
-    .select('slug name description location')
+    .select('slug name description location photo')
     .limit(10);
   res.json(stores);
 };
