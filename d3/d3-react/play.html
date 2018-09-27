@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Playground</title>
+</head>
+
+<style>
+  body {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  }
+</style>
+
+<body>
+
+  <h1>D3 playground</h1>
+
+  <script src="./node_modules/d3/dist/d3.js"></script>
+  <script>
+
+    const width = 800;
+    const height = 600;
+
+    const data = [
+      {
+        date: new Date('01-01-2015'), temp: 0
+      },
+      {
+        date: new Date('01-01-2017'), temp: 3
+      }
+    ];
+
+    // get min/max
+    const min = d3.min(data, d => d.date)
+    const max = d3.max(data, d => d.date)
+
+    // or use extend, which gives back [min, max]
+
+    const extent = d3.extent(data, d => d.temp)
+
+
+    const xScale = d3.scaleTime()
+      .domain([min, max])
+      .range([0, width]);
+
+    const yScale = d3.scaleLinear()
+      .domain(extent)
+      .range([height, 0])
+
+
+  </script>
+</body>
+
+</html>
