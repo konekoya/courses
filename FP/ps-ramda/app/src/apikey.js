@@ -1,4 +1,0 @@
-const apiKey = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NzdhMGQzZTcwMjFjMTRhMDVlYzBjZTcxMGY2ZDQ5NiIsInN1YiI6IjU5MjM5MjU5YzNhMzY4MDQ3NDAwNDQ1MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ibQlXmTxMFruFgAUM6eyAkmEshdB9bjlSqnAB9l4pTQ
-';
-
-module.exports = apiKey;
