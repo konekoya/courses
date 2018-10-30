@@ -1,8 +1,10 @@
 {
   "devDependencies": {
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.5"
   },
   "scripts": {
-    "test": "mocha './test/**/*.spec.*'"
+    "test": "mocha './test/**/*.spec.*'",
+    "test:watch": "nodemon --exec yarn test"
   }
 }

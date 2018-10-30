@@ -6,6 +6,8 @@ function AuthController() {
   }
 
   function isAuthorized(neededRole) {
+    console.log('isAuthorized Roles', roles);
+
     return roles.indexOf(neededRole) >= 0;
   }
 
@@ -14,6 +16,8 @@ function AuthController() {
       cb(roles.indexOf(neededRole) >= 0);
     }, 0);
   }
+
+  console.log('Roles', roles);
 
   return { isAuthorized, isAuthorizedAsync, setRoles };
 }

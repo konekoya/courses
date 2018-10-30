@@ -4,9 +4,17 @@ const authController = require('../../controllers/auth.controller');
 
 describe('AuthController', () => {
   beforeEach(() => {
-    console.log('before each');
+    authController.setRoles(['user', 'name']);
+  });
 
-    authController.setRoles(['user']);
+  console.log('test something');
+
+  describe('simple test', () => {
+    // console.log(authController.setRoles(['joshua']));
+    it('describes your test here!', () => {
+      console.log(authController.isAuthorized('user'));
+      console.log('hey');
+    });
   });
 
   describe('isAuthorized', () => {
