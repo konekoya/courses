@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+
+    // Car function, or Constructor function. Usually Capitalized
+    function Car(make) {
+      // initialize when called with new keyword
+      this.make = make;
+      this.wheels = 1;
+      this.status = 'stopped';
+    }
+
+    // A prototype object is created when the Car function is declare
+    console.log(Car.prototype); // { wheels: 4, color: navy, run: f(), stop: f() }
+
+    // These props are added to Car.prototype
+    Car.prototype.wheels = 4;
+    Car.prototype.color = 'navy';
+    Car.prototype.run = function () {
+      this.status = 'running';
+      console.log('Starting the engine...');
+    }
+    Car.prototype.stop = function () {
+      this.status = 'stopped';
+      console.log('Stopping the engine...');
+    }
+
+    // Declare a new obj with Car function, the new keyword is required.
+    const myCar = new Car('Ford');
+    console.log(myCar); // An object with props from Car function {...}
+    console.log(myCar.wheels); // 1, since this prop is found in myCar object, it won't proceed and do a prototype chain search
+    console.log(myCar.make); // Ford
+
+    console.log(myCar.color); // navy, this prop is searched and found on prototype chain of Car
+    console.log(myCar.model); // undefined, this prop is searched and eventually not found on the prototype chain. So it returns undefined
+
+
+  </script>
+</body>
+
+</html>
