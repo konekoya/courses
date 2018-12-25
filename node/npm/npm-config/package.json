@@ -1,0 +1,16 @@
+{
+  "name": "npm-config",
+  "version": "1.0.0",
+  "config": {
+    "port": 1347
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "main": "index.js",
+  "author": "Joshua Lin (http://konekoya.github.io)",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
