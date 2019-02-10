@@ -15,6 +15,8 @@ class Root extends React.Component {
   };
 
   handleLogout = () => {
+    console.log("here");
+
     this.setState({ currentUser: null });
   };
 
@@ -24,14 +26,10 @@ class Root extends React.Component {
         value={{
           user: this.state.currentUser,
           onLogin: this.handleLogin,
-          onLogout: this.handleLogOut
+          onLogout: this.handleLogout
         }}
       >
-        {this.state.currentUser ? (
-          <MainPage onLogout={this.handleLogout} />
-        ) : (
-          <LoginPage onLogin={this.handleLogin} />
-        )}
+        {this.state.currentUser ? <MainPage /> : <LoginPage />}
       </UserContext.Provider>
     );
   }

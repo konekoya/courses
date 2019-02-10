@@ -1,12 +1,10 @@
-import React from 'react';
-import { FAKE_USER } from './api';
+import React from "react";
 
 const { Provider, Consumer } = React.createContext();
-// Context.Consumer, Context.Provider
 
 class UserProvider extends React.Component {
   state = {
-    currentUser: FAKE_USER
+    currentUser: null
   };
 
   handleLogin = user => {
@@ -14,6 +12,8 @@ class UserProvider extends React.Component {
   };
 
   handleLogout = () => {
+    console.log("here");
+
     this.setState({ currentUser: null });
   };
 

@@ -1,27 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import LoginPage from './LoginPage';
-import MainPage from './MainPage';
-import { UserProvider, UserConsumer } from './UserContext';
-import './index.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import LoginPage from "./LoginPage";
+import MainPage from "./MainPage";
+import { UserProvider, UserConsumer } from "./UserContext";
+import { EmailProvider } from "./EmailContext";
+import "./index.css";
 
 function Root() {
   return (
     <UserConsumer>
-      {({ user }) =>
-        user ? (
-          <MainPage />
-        ) : (
-          <LoginPage onLogin={this.handleLogin} />
-        )
-      }
+      {({ user }) => (user ? <MainPage /> : <LoginPage />)}
     </UserConsumer>
   );
 }
 
 ReactDOM.render(
   <UserProvider>
-    <Root />
+    <EmailProvider>
+      <Root />
+    </EmailProvider>
   </UserProvider>,
-  document.querySelector('#root')
+  document.querySelector("#root")
 );
