@@ -1,0 +1,60 @@
+:root {
+  --toggler-width: 120px;
+  --toggler-height: 40px;
+  --toggler-bg-color: #ffbf00;
+  --toggler-active-bg-color: #ffcf40;
+  --menu-starting-top: 0px;
+  --menu-ending-top: 45px;
+  --menu-width: 200px;
+  --menu-max-height: 200px;
+  --menu-bg-color: #ffdc73;
+  --fade-from-color: transparent;
+  --fade-to-color: black;
+  --timeout: 350ms;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.container {
+  position: relative;
+}
+
+.toggler {
+  position: relative;
+  z-index: 2;
+  width: var(--toggler-width);
+  height: var(--toggler-height);
+  background-color: var(--toggler-bg-color);
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 350ms;
+}
+
+.toggler--active {
+  background-color: var(--toggler-active-bg-color);
+}
+
+.menu {
+  position: absolute;
+  top: var(--menu-ending-top);
+  z-index: 1;
+  box-sizing: border-box;
+  width: var(--menu-width);
+  padding: 0 20px;
+  overflow: hidden;
+  background-color: var(--menu-bg-color);
+  border-radius: 5px;
+}
+
+.list {
+  padding: 0;
+  list-style-type: none;
+}
+
+.list-item {
+  padding: 5px 0;
+}
