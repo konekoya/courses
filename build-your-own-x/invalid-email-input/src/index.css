@@ -1,3 +1,9 @@
+:root {
+  --green: #0cf035;
+  --blue: #0c98fa;
+  --red: #fa310c;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -20,8 +26,8 @@ body {
 }
 
 input {
-  height: 45px;
-  width: 300px;
+  height: 55px;
+  width: 350px;
   border: none;
   border-radius: 4px;
   font-size: 15px;
@@ -33,22 +39,79 @@ input {
 
 input {
   transition: 0.3s all;
-  border: 2px solid blue;
+}
+
+input.is-focus {
+  border: 2px solid var(--blue);
 }
 
 input.is-success {
-  border-color: green;
+  border-color: var(--green);
 }
 
 input.is-failed {
-  border-color: red;
+  border-color: var(--red);
+  animation: shake 0.82s both;
 }
 
 label {
   position: absolute;
-  top: 8px;
+  top: 16px;
   left: 12px;
-  font-size: 11px;
+  font-size: 10px;
   color: gray;
   visibility: hidden;
+  opacity: 0;
+  transition: 0.3s all;
+}
+
+label.is-active {
+  visibility: visible;
+  top: 8px;
+  opacity: 1;
+  transition: 0.3s all;
+}
+
+.email-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  margin-top: -7px;
+}
+
+.error-icon {
+  background-color: var(--red);
+  color: white;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  font-size: 11px;
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(8px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
 }
