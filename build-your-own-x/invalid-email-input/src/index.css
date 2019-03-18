@@ -17,39 +17,43 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-
   background-color: #f4f4f4;
 }
 
 .form-group {
   position: relative;
+  border-radius: 4px;
+  transition: 0.3s all;
 }
 
 input {
   height: 55px;
   width: 350px;
   border: none;
-  border-radius: 4px;
   font-size: 15px;
   outline: none;
   text-indent: 10px;
   border: 2px solid white;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 17px 20px -17px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 17px 20px -17px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 17px 20px -17px rgba(0, 0, 0, 0.15);
+}
+
+.form-group {
   transition: 0.3s all;
 }
 
-input {
+.form-group.is-focus {
   transition: 0.3s all;
-}
-
-input.is-focus {
   border: 2px solid var(--blue);
 }
 
-input.is-success {
+.form-group.is-success {
   border-color: var(--green);
 }
 
-input.is-failed {
+.form-group.is-failed {
   border-color: var(--red);
   animation: shake 0.82s both;
 }
@@ -72,24 +76,33 @@ label.is-active {
   transition: 0.3s all;
 }
 
-.email-icon {
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  margin-top: -7px;
+label.is-failed {
+  color: var(--red);
 }
 
-.error-icon {
-  background-color: var(--red);
-  color: white;
+.icon-wrapper {
   position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0 10px;
+}
+
+.icon-wrapper.error {
+  background-color: var(--red);
+}
+
+.icon-wrapper.success {
+  background-color: var(--green);
+}
+
+.error-icon,
+.success-icon {
   padding: 12px;
-  right: 0;
-  top: 0;
-  bottom: 0;
   font-size: 11px;
 }
 
