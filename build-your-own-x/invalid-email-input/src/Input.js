@@ -4,6 +4,11 @@ import Email from "./Email";
 import Error from "./Error";
 import Success from "./Success";
 
+const SUCCESS_CLS = "is-success";
+const FAILED_CLS = "is-failed";
+const FOCUS_CLS = "is-focus";
+const VALID_EMAIL = "joshua@gmail.com";
+
 const Input = () => {
   const [text, setText] = useState("");
   const [cls, setCls] = useState("");
@@ -28,46 +33,42 @@ const Input = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    console.log({ text });
-    if (text === "joshua") {
-      setCls("is-success");
+    if (text === VALID_EMAIL) {
+      setCls(SUCCESS_CLS);
     } else {
-      setCls("is-failed");
+      setCls(FAILED_CLS);
     }
   };
 
   const renderIcon = () => {
+    const iconProps = { width: 15, height: 15 };
+
     if (cls === "") {
       return (
         <div className="icon-wrapper">
-          <Email className="success-icon" width={15} height={15} fill="gray" />
+          <Email className="success-icon" fill="gray" {...iconProps} />
         </div>
       );
-    } else if (cls === "is-success") {
+    } else if (cls === SUCCESS_CLS) {
       return (
         <div className="icon-wrapper success">
-          <Success
-            className="success-icon"
-            width={15}
-            height={15}
-            fill="white"
-          />
+          <Success className="success-icon" fill="white" {...iconProps} />
         </div>
       );
-    } else if (cls === "is-failed") {
+    } else if (cls === FAILED_CLS) {
       return (
         <div className="icon-wrapper error">
-          <Error className="error-icon" width={15} height={15} fill="white" />
+          <Error className="error-icon" fill="white" {...iconProps} />
         </div>
       );
     }
   };
 
-  const focusCls = focus ? "is-focus" : "";
+  const focusCls = focus ? FOCUS_CLS : "";
   const labelCls = focus ? "is-active" : "";
   const placeHolder = focus ? "" : "Email";
   const labelText =
-    focus && cls === "is-failed" ? "Email format is invalid!" : "Email";
+    focus && cls === FAILED_CLS ? "Email format is invalid!" : "Email";
 
   return (
     <form onSubmit={handleSubmit}>
