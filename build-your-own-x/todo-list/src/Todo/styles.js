@@ -4,25 +4,17 @@ export const TodoContainer = styled.div`
   position: relative;
   background-color: white;
   padding: 140px 80px;
-  width: 450px;
-
-  .todo-header {
-    display: flex;
-
-    .day {
-      margin-left: auto;
-      text-transform: uppercase;
-    }
-  }
+  width: 750px;
+  font-family: "Varela Round", sans-serif;
 `;
 
 export const NewTodoBtn = styled.button`
   position: absolute;
-  top: calc(100% - 30px);
+  top: calc(100% - 90px);
   left: 50%;
-  margin-left: -20px;
-  width: 60px;
-  height: 60px;
+  margin-left: -90px;
+  width: 180px;
+  height: 180px;
   background-color: #50e3a3;
   border: none;
   border-radius: 50%;

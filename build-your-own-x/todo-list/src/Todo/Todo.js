@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import styled from "styled-components";
-import * as moment from "moment";
 
 import PlugIcon from "./PlugIcon";
+import Header from "./Header";
 import { TodoContainer, NewTodoBtn } from "./styles";
 
 export const StyledModal = styled(Modal)`
@@ -15,8 +15,33 @@ export const StyledModal = styled(Modal)`
   width: 290px;
 `;
 
+const TodoList = styled.ul`
+  margin: 0;
+  padding: 0;
+`;
+
+const TodoItem = styled.li`
+  list-style: none;
+  margin: 50px 0;
+
+  .name {
+    font-size: 33px;
+    color: #3e434f;
+  }
+
+  &.is-completed {
+    .name {
+      color: #bdc0ca;
+    }
+  }
+`;
+
 const Todo = () => {
-  const [todo, setTodo] = useState([]);
+  const [todos, setTodos] = useState([
+    { id: 1, name: "Buy a new sweatshirt", completed: false },
+    { id: 2, name: "Read an article", completed: true },
+    { id: 3, name: "Try not to fall asleep", completed: false }
+  ]);
   const [showModal, setShowModal] = useState(false);
 
   const handleNewTodo = e => {
@@ -31,14 +56,18 @@ const Todo = () => {
 
   return (
     <TodoContainer>
-      <div className="todo-header">
-        <span className="date">{moment().format("D MMMM YYYY")}</span>
-        <span className="day">{moment().format("dddd")}</span>
-      </div>
-
-      {todo.map(t => {
-        return <li key={t}>{t}</li>;
-      })}
+      <Header />
+      <TodoList>
+        {todos.map(todo => {
+          const { completed, name, id } = todo;
+          return (
+            <TodoItem key={id} className={completed ? "is-completed" : ""}>
+              <div className="name">{name}</div>
+              <span className="is-completed">{completed ? "Yes" : "Nope"}</span>
+            </TodoItem>
+          );
+        })}
+      </TodoList>
 
       <StyledModal
         ariaHideApp={false}
@@ -49,7 +78,7 @@ const Todo = () => {
       </StyledModal>
 
       <NewTodoBtn className="new-todo-btn" onClick={handleNewTodo}>
-        <PlugIcon width="20" height="20" fill="#46BE8B" />
+        <PlugIcon width="60" height="60" fill="#46BE8B" />
       </NewTodoBtn>
     </TodoContainer>
   );
