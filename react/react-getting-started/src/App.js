@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 
-import Todo from "./Todo";
+import StarMatch from "./StarMatch";
+import "./App.css";
 
 class App extends Component {
   render() {
-    return <Todo />;
+    return <StarMatch />;
   }
 }
 

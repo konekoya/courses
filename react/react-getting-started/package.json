@@ -1,14 +1,11 @@
 {
-  "name": "todo-list",
+  "name": "react-getting-started",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "moment": "^2.24.0",
-    "react": "^16.8.5",
-    "react-dom": "^16.8.5",
-    "react-modal": "^3.8.1",
-    "react-scripts": "2.1.8",
-    "styled-components": "^4.2.0"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "2.1.8"
   },
   "scripts": {
     "start": "react-scripts start",
