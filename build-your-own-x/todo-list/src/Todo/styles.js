@@ -3,18 +3,18 @@ import styled from "styled-components";
 export const TodoContainer = styled.div`
   position: relative;
   background-color: white;
-  padding: 140px 80px;
-  width: 750px;
+  padding: 60px 50px;
+  width: 380px;
   font-family: "Varela Round", sans-serif;
 `;
 
 export const NewTodoBtn = styled.button`
   position: absolute;
-  top: calc(100% - 90px);
+  top: calc(100% - 45px);
   left: 50%;
-  margin-left: -90px;
-  width: 180px;
-  height: 180px;
+  margin-left: -45px;
+  width: 90px;
+  height: 90px;
   background-color: #50e3a3;
   border: none;
   border-radius: 50%;

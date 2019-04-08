@@ -25,7 +25,7 @@ const TodoItem = styled.li`
   margin: 50px 0;
 
   .name {
-    font-size: 33px;
+    font-size: 16px;
     color: #3e434f;
   }
 
@@ -78,7 +78,7 @@ const Todo = () => {
       </StyledModal>
 
       <NewTodoBtn className="new-todo-btn" onClick={handleNewTodo}>
-        <PlugIcon width="60" height="60" fill="#46BE8B" />
+        <PlugIcon width="25" height="25" fill="#46BE8B" />
       </NewTodoBtn>
     </TodoContainer>
   );

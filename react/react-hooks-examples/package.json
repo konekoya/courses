@@ -1,15 +1,18 @@
 {
-  "name": "todo-list",
+  "name": "react-hooks-examples",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "dompurify": "^1.0.10",
-    "moment": "^2.24.0",
-    "react": "^16.8.5",
-    "react-dom": "^16.8.5",
-    "react-modal": "^3.8.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-scripts": "2.1.8",
-    "styled-components": "^4.2.0"
+    "@emotion/core": "^10.0.7",
+    "@emotion/styled": "^10.0.7",
+    "@material-ui/core": "^3.5.1",
+    "@reach/dialog": "^0.1.2",
+    "emotion": "^10.0.7",
+    "lodash.uniqueid": "^4.0.1",
+    "react-emotion": "^10.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
