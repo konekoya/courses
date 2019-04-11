@@ -41,8 +41,6 @@ const Header = () => {
     `[<span class="day">]D[</span>][<div class="month-year-wrap"><span class="month">]MMMM[</span><span class="year">]YYYY[</span></div>]`
   );
 
-  console.log(date);
-
   return (
     <StyledHeader>
       <span
