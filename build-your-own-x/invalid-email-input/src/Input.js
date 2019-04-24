@@ -45,19 +45,19 @@ const Input = () => {
 
     if (cls === "") {
       return (
-        <div className="icon-wrapper">
+        <div data-testid="icon-wrapper" className="icon-wrapper">
           <Email className="success-icon" fill="gray" {...iconProps} />
         </div>
       );
     } else if (cls === SUCCESS_CLS) {
       return (
-        <div className="icon-wrapper success">
+        <div data-testid="icon-wrapper" className="icon-wrapper success">
           <Success className="success-icon" fill="white" {...iconProps} />
         </div>
       );
     } else if (cls === FAILED_CLS) {
       return (
-        <div className="icon-wrapper error">
+        <div data-testid="icon-wrapper" className="icon-wrapper error">
           <Error className="error-icon" fill="white" {...iconProps} />
         </div>
       );
@@ -71,10 +71,17 @@ const Input = () => {
     focus && cls === FAILED_CLS ? "Email format is invalid!" : "Email";
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form data-testid="form" onSubmit={handleSubmit}>
       <div className={`form-group ${cls} ${focusCls}`}>
-        <label className={`${labelCls} ${cls}`}>{labelText}</label>
+        <label
+          data-testid="label"
+          htmlFor="input"
+          className={`${labelCls} ${cls}`}
+        >
+          {labelText}
+        </label>
         <input
+          id="input"
           type="text"
           value={text}
           onFocus={handleFocus}
