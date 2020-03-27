@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "rxjs": "^6.5.4"
+    "rxjs": "^6.5.4",
+    "xmlhttprequest": "^1.8.0"
   }
 }

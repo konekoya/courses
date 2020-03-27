@@ -5,8 +5,7 @@ of("a", 1)
   .pipe(
     map(x => x.toUpperCase()),
     retry(2),
-    catchError(err => of(undefined)),
-    filter(x => Boolean(x))
+    catchError(err => of(undefined))
   )
   .subscribe(
     v => console.log(v),
