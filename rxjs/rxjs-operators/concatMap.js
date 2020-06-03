@@ -1,4 +1,4 @@
-const { interval, of } = require("rxjs");
+const { interval, of, from } = require("rxjs");
 const { concatMap, take, delay, map, mergeMap } = require("rxjs/operators");
 
 // interval(1000)
@@ -12,10 +12,14 @@ const { concatMap, take, delay, map, mergeMap } = require("rxjs/operators");
 //   .pipe(concatMap((x) => [x, 3 * x]))
 //   .subscribe((v) => console.log(v));
 
-of(10, 1500, 1000, 500)
-  .pipe(
-    concatMap((delayMs) =>
-      of(`Emitting after ${delayMs} ms`).pipe(delay(delayMs))
-    )
-  )
+// of(10, 1500, 1000, 500)
+//   .pipe(
+//     concatMap((delayMs) =>
+//       of(`Emitting after ${delayMs} ms`).pipe(delay(delayMs))
+//     )
+//   )
+//   .subscribe((v) => console.log(v));
+
+of(1, 2, 3)
+  .pipe(concatMap((x) => of(x).pipe(delay(1000))))
   .subscribe((v) => console.log(v));
