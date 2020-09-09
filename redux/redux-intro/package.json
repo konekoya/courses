@@ -19,7 +19,7 @@
     "babel-eslint": "^7.2.3",
     "express": "4.14.0",
     "history": "^4.4.0",
-    "lodash": "4.16.2",
+    "lodash": "4.17.19",
     "preact": "^6.4.0",
     "preact-compat": "^3.9.3",
     "react": "15.3.2",
